@@ -1,10 +1,10 @@
-# Fenestra Search — Portuguese translation
+# Fenestra Search — Portuguese (Portugal) translation
 # SPDX-FileCopyrightText: 2026 naykkalak
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Machine-assisted translation — to be reviewed by a native speaker
 msgid ""
 msgstr ""
-"Project-Id-Version: Fenestra Search 1.0\n"
+"Project-Id-Version: Fenestra Search 1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/naykkalak/fenestra-search/issues\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "Voltar"
 
 #: contents/ui/Capsule.qml:113
 msgid "Search"
-msgstr "Pesquisar"
+msgstr "Procurar"
 
 #: contents/ui/ConfigGeneral.qml:19
 msgid "Search box width:"
@@ -86,7 +86,7 @@ msgstr "Outros resultados"
 
 #: contents/ui/FenetreRecherche.qml:122
 msgid "Search “%1” on %2"
-msgstr "Pesquisar “%1” no %2"
+msgstr "Pesquisar “%1” em %2"
 
 #: contents/ui/FenetreRecherche.qml:128
 msgid "Web search"
@@ -124,3 +124,106 @@ msgstr "Pastas"
 msgid "Web"
 msgstr "Web"
 
+#: contents/ui/VoletDetails.qml
+msgid "Best match"
+msgstr "Melhor correspondência"
+
+#: contents/ui/VoletDetails.qml
+msgid "Calculation"
+msgstr "Cálculo"
+
+#: contents/ui/VoletDetails.qml
+msgid "Setting"
+msgstr "Definição"
+
+#: contents/ui/VoletDetails.qml
+msgid "Application"
+msgstr "Aplicação"
+
+#: contents/ui/VoletDetails.qml
+msgid "Folder"
+msgstr "Pasta"
+
+#: contents/ui/VoletDetails.qml
+msgid "Image"
+msgstr "Imagem"
+
+#: contents/ui/VoletDetails.qml
+msgid "Document"
+msgstr "Documento"
+
+#: contents/ui/VoletDetails.qml
+msgid "File"
+msgstr "Ficheiro"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open"
+msgstr "Abrir"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open file location"
+msgstr "Abrir localização do ficheiro"
+
+#: contents/ui/VoletDetails.qml
+msgid "Copy path"
+msgstr "Copiar caminho"
+
+#: contents/ui/VoletDetails.qml
+msgid "Search settings"
+msgstr "Definições de pesquisa"
+
+#: contents/ui/VoletDetails.qml
+msgid "Configure Fenestra Search…"
+msgstr "Configurar Fenestra Search…"
+
+#: contents/ui/VoletDetails.qml
+msgid "About Fenestra Search"
+msgstr "Acerca do Fenestra Search"
+
+#: contents/ui/VoletDetails.qml
+msgid "Version %1"
+msgstr "Versão %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "Part of the Fenestra series, which gives KDE Plasma the look of a Windows 11 desktop."
+msgstr "Faz parte da série Fenestra, que dá ao KDE Plasma o aspeto de um ambiente de trabalho Windows 11."
+
+#: contents/ui/VoletDetails.qml
+msgid "Author: %1"
+msgstr "Autor: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "License: %1"
+msgstr "Licença: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "GPL-3.0 or later"
+msgstr "GPL-3.0 ou posterior"
+
+#: contents/ui/VoletDetails.qml
+msgid "This software is neither affiliated with nor endorsed by Microsoft Corporation. Windows is a trademark of Microsoft Corporation."
+msgstr "Este software não está afiliado à Microsoft Corporation nem é aprovado por ela. Windows é uma marca registada da Microsoft Corporation."
+
+#: contents/ui/VoletDetails.qml
+msgid "Result ranking adapted from MFile Search by MCC45TR (GPL-3.0)."
+msgstr "Classificação dos resultados adaptada do MFile Search, de MCC45TR (GPL-3.0)."
+
+#: contents/ui/VoletDetails.qml
+msgid "Close"
+msgstr "Fechar"
+
+#: contents/ui/ConfigGeneral.qml
+msgid "Show only a magnifier in the taskbar"
+msgstr "Mostrar apenas uma lupa na barra de tarefas"
+
+#: contents/ui/BandeauBas.qml
+msgid "Type here to search"
+msgstr "Escreva aqui para pesquisar"
+
+#: contents/ui/BoutonReglages.qml
+msgid "Settings"
+msgstr "Definições"
+
+#: contents/ui/BandeauBas.qml
+msgid "More options"
+msgstr "Mais opções"

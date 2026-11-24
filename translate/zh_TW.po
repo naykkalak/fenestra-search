@@ -1,0 +1,229 @@
+# Fenestra Search — Chinese (Traditional) translation
+# SPDX-FileCopyrightText: 2026 naykkalak
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Machine-assisted translation — to be reviewed by a native speaker
+msgid ""
+msgstr ""
+"Project-Id-Version: Fenestra Search 1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/naykkalak/fenestra-search/issues\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: contents/config/config.qml:11
+msgid "General"
+msgstr "一般"
+
+#: contents/ui/Accueil.qml:47
+msgid "Recent"
+msgstr "最近"
+
+#: contents/ui/Accueil.qml:101
+msgid "Home"
+msgstr "家目錄"
+
+#: contents/ui/Accueil.qml:144
+msgid "Quick searches"
+msgstr "快速搜尋"
+
+#: contents/ui/Accueil.qml:195
+msgid "Audio"
+msgstr "音訊"
+
+#: contents/ui/Accueil.qml:196
+msgid "Bluetooth"
+msgstr "藍牙"
+
+#: contents/ui/Accueil.qml:197
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: contents/ui/Accueil.qml:198
+msgid "Display"
+msgstr "顯示"
+
+#: contents/ui/Accueil.qml:199
+msgid "Colors"
+msgstr "顏色"
+
+#: contents/ui/Accueil.qml:200
+msgid "Wallpaper"
+msgstr "桌布"
+
+#: contents/ui/Accueil.qml:239
+msgid "Top apps"
+msgstr "常用應用程式"
+
+#: contents/ui/BandeauBas.qml:58
+msgid "Back"
+msgstr "返回"
+
+#: contents/ui/Capsule.qml:113
+msgid "Search"
+msgstr "搜尋"
+
+#: contents/ui/ConfigGeneral.qml:19
+msgid "Search box width:"
+msgstr "搜尋框寬度："
+
+#: contents/ui/ConfigGeneral.qml:33
+msgid "Web search engine:"
+msgstr "網頁搜尋引擎："
+
+#: contents/ui/ConfigGeneral.qml:36
+msgid "Follow KDE settings"
+msgstr "跟隨 KDE 設定"
+
+#: contents/ui/ConfigGeneral.qml:43
+msgid "“Follow KDE settings” uses the default engine chosen in System Settings › Web Search Keywords."
+msgstr "「跟隨 KDE 設定」會使用在系統設定 › 網頁搜尋關鍵字中選擇的預設引擎。"
+
+#: contents/ui/FenetreRecherche.qml:112
+msgid "Other Results"
+msgstr "其他結果"
+
+#: contents/ui/FenetreRecherche.qml:122
+msgid "Search “%1” on %2"
+msgstr "在 %2 上搜尋「%1」"
+
+#: contents/ui/FenetreRecherche.qml:128
+msgid "Web search"
+msgstr "網路搜尋"
+
+#: contents/ui/ListeResultats.qml:61
+msgid "Searching…"
+msgstr "正在搜尋…"
+
+#: contents/ui/ListeResultats.qml:61
+msgid "No results found"
+msgstr "找不到結果"
+
+#: contents/ui/PucesFiltres.qml:20
+msgid "All"
+msgstr "全部"
+
+#: contents/ui/PucesFiltres.qml:21
+msgid "Apps"
+msgstr "應用程式"
+
+#: contents/ui/PucesFiltres.qml:22
+msgid "Docs"
+msgstr "文件"
+
+#: contents/ui/PucesFiltres.qml:23
+msgid "Images"
+msgstr "圖片"
+
+#: contents/ui/PucesFiltres.qml:24
+msgid "Folders"
+msgstr "資料夾"
+
+#: contents/ui/PucesFiltres.qml:25
+msgid "Web"
+msgstr "網頁"
+
+#: contents/ui/VoletDetails.qml
+msgid "Best match"
+msgstr "最佳符合"
+
+#: contents/ui/VoletDetails.qml
+msgid "Calculation"
+msgstr "計算"
+
+#: contents/ui/VoletDetails.qml
+msgid "Setting"
+msgstr "設定"
+
+#: contents/ui/VoletDetails.qml
+msgid "Application"
+msgstr "應用程式"
+
+#: contents/ui/VoletDetails.qml
+msgid "Folder"
+msgstr "資料夾"
+
+#: contents/ui/VoletDetails.qml
+msgid "Image"
+msgstr "圖片"
+
+#: contents/ui/VoletDetails.qml
+msgid "Document"
+msgstr "文件"
+
+#: contents/ui/VoletDetails.qml
+msgid "File"
+msgstr "檔案"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open"
+msgstr "開啟"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open file location"
+msgstr "開啟檔案位置"
+
+#: contents/ui/VoletDetails.qml
+msgid "Copy path"
+msgstr "複製路徑"
+
+#: contents/ui/VoletDetails.qml
+msgid "Search settings"
+msgstr "搜尋設定"
+
+#: contents/ui/VoletDetails.qml
+msgid "Configure Fenestra Search…"
+msgstr "設定 Fenestra Search…"
+
+#: contents/ui/VoletDetails.qml
+msgid "About Fenestra Search"
+msgstr "關於 Fenestra Search"
+
+#: contents/ui/VoletDetails.qml
+msgid "Version %1"
+msgstr "版本 %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "Part of the Fenestra series, which gives KDE Plasma the look of a Windows 11 desktop."
+msgstr "屬於 Fenestra 系列，為 KDE Plasma 帶來 Windows 11 桌面的外觀。"
+
+#: contents/ui/VoletDetails.qml
+msgid "Author: %1"
+msgstr "作者：%1"
+
+#: contents/ui/VoletDetails.qml
+msgid "License: %1"
+msgstr "授權：%1"
+
+#: contents/ui/VoletDetails.qml
+msgid "GPL-3.0 or later"
+msgstr "GPL-3.0 或更新版本"
+
+#: contents/ui/VoletDetails.qml
+msgid "This software is neither affiliated with nor endorsed by Microsoft Corporation. Windows is a trademark of Microsoft Corporation."
+msgstr "本軟體與 Microsoft Corporation 無關，也未獲其認可。Windows 是 Microsoft Corporation 的商標。"
+
+#: contents/ui/VoletDetails.qml
+msgid "Result ranking adapted from MFile Search by MCC45TR (GPL-3.0)."
+msgstr "結果排序改編自 MCC45TR 的 MFile Search（GPL-3.0）。"
+
+#: contents/ui/VoletDetails.qml
+msgid "Close"
+msgstr "關閉"
+
+#: contents/ui/ConfigGeneral.qml
+msgid "Show only a magnifier in the taskbar"
+msgstr "在工作列上僅顯示放大鏡"
+
+#: contents/ui/BandeauBas.qml
+msgid "Type here to search"
+msgstr "在此輸入來搜尋"
+
+#: contents/ui/BoutonReglages.qml
+msgid "Settings"
+msgstr "設定"
+
+#: contents/ui/BandeauBas.qml
+msgid "More options"
+msgstr "更多選項"

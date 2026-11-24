@@ -4,7 +4,7 @@
 # Machine-assisted translation — to be reviewed by a native speaker
 msgid ""
 msgstr ""
-"Project-Id-Version: Fenestra Search 1.0\n"
+"Project-Id-Version: Fenestra Search 1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/naykkalak/fenestra-search/issues\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +90,7 @@ msgstr "Szukaj „%1” w %2"
 
 #: contents/ui/FenetreRecherche.qml:128
 msgid "Web search"
-msgstr "Wyszukiwanie w internecie"
+msgstr "Wyszukiwanie w sieci"
 
 #: contents/ui/ListeResultats.qml:61
 msgid "Searching…"
@@ -124,3 +124,106 @@ msgstr "Foldery"
 msgid "Web"
 msgstr "Internet"
 
+#: contents/ui/VoletDetails.qml
+msgid "Best match"
+msgstr "Najlepsze dopasowanie"
+
+#: contents/ui/VoletDetails.qml
+msgid "Calculation"
+msgstr "Obliczenie"
+
+#: contents/ui/VoletDetails.qml
+msgid "Setting"
+msgstr "Ustawienie"
+
+#: contents/ui/VoletDetails.qml
+msgid "Application"
+msgstr "Aplikacja"
+
+#: contents/ui/VoletDetails.qml
+msgid "Folder"
+msgstr "Folder"
+
+#: contents/ui/VoletDetails.qml
+msgid "Image"
+msgstr "Obraz"
+
+#: contents/ui/VoletDetails.qml
+msgid "Document"
+msgstr "Dokument"
+
+#: contents/ui/VoletDetails.qml
+msgid "File"
+msgstr "Plik"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open"
+msgstr "Otwórz"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open file location"
+msgstr "Otwórz lokalizację pliku"
+
+#: contents/ui/VoletDetails.qml
+msgid "Copy path"
+msgstr "Kopiuj ścieżkę"
+
+#: contents/ui/VoletDetails.qml
+msgid "Search settings"
+msgstr "Ustawienia wyszukiwania"
+
+#: contents/ui/VoletDetails.qml
+msgid "Configure Fenestra Search…"
+msgstr "Konfiguruj Fenestra Search…"
+
+#: contents/ui/VoletDetails.qml
+msgid "About Fenestra Search"
+msgstr "O programie Fenestra Search"
+
+#: contents/ui/VoletDetails.qml
+msgid "Version %1"
+msgstr "Wersja %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "Part of the Fenestra series, which gives KDE Plasma the look of a Windows 11 desktop."
+msgstr "Część serii Fenestra, która nadaje KDE Plasma wygląd pulpitu Windows 11."
+
+#: contents/ui/VoletDetails.qml
+msgid "Author: %1"
+msgstr "Autor: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "License: %1"
+msgstr "Licencja: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "GPL-3.0 or later"
+msgstr "GPL-3.0 lub nowsza"
+
+#: contents/ui/VoletDetails.qml
+msgid "This software is neither affiliated with nor endorsed by Microsoft Corporation. Windows is a trademark of Microsoft Corporation."
+msgstr "To oprogramowanie nie jest powiązane z firmą Microsoft Corporation ani przez nią zatwierdzone. Windows jest znakiem towarowym firmy Microsoft Corporation."
+
+#: contents/ui/VoletDetails.qml
+msgid "Result ranking adapted from MFile Search by MCC45TR (GPL-3.0)."
+msgstr "Kolejność wyników zaadaptowana z MFile Search autorstwa MCC45TR (GPL-3.0)."
+
+#: contents/ui/VoletDetails.qml
+msgid "Close"
+msgstr "Zamknij"
+
+#: contents/ui/ConfigGeneral.qml
+msgid "Show only a magnifier in the taskbar"
+msgstr "Pokaż tylko lupę na pasku zadań"
+
+#: contents/ui/BandeauBas.qml
+msgid "Type here to search"
+msgstr "Wpisz tutaj, aby wyszukać"
+
+#: contents/ui/BoutonReglages.qml
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: contents/ui/BandeauBas.qml
+msgid "More options"
+msgstr "Więcej opcji"

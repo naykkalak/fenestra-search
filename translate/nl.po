@@ -4,7 +4,7 @@
 # Machine-assisted translation — to be reviewed by a native speaker
 msgid ""
 msgstr ""
-"Project-Id-Version: Fenestra Search 1.0\n"
+"Project-Id-Version: Fenestra Search 1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/naykkalak/fenestra-search/issues\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,3 +124,106 @@ msgstr "Mappen"
 msgid "Web"
 msgstr "Web"
 
+#: contents/ui/VoletDetails.qml
+msgid "Best match"
+msgstr "Beste overeenkomst"
+
+#: contents/ui/VoletDetails.qml
+msgid "Calculation"
+msgstr "Berekening"
+
+#: contents/ui/VoletDetails.qml
+msgid "Setting"
+msgstr "Instelling"
+
+#: contents/ui/VoletDetails.qml
+msgid "Application"
+msgstr "Toepassing"
+
+#: contents/ui/VoletDetails.qml
+msgid "Folder"
+msgstr "Map"
+
+#: contents/ui/VoletDetails.qml
+msgid "Image"
+msgstr "Afbeelding"
+
+#: contents/ui/VoletDetails.qml
+msgid "Document"
+msgstr "Document"
+
+#: contents/ui/VoletDetails.qml
+msgid "File"
+msgstr "Bestand"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open"
+msgstr "Openen"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open file location"
+msgstr "Bestandslocatie openen"
+
+#: contents/ui/VoletDetails.qml
+msgid "Copy path"
+msgstr "Pad kopiëren"
+
+#: contents/ui/VoletDetails.qml
+msgid "Search settings"
+msgstr "Zoekinstellingen"
+
+#: contents/ui/VoletDetails.qml
+msgid "Configure Fenestra Search…"
+msgstr "Fenestra Search instellen…"
+
+#: contents/ui/VoletDetails.qml
+msgid "About Fenestra Search"
+msgstr "Over Fenestra Search"
+
+#: contents/ui/VoletDetails.qml
+msgid "Version %1"
+msgstr "Versie %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "Part of the Fenestra series, which gives KDE Plasma the look of a Windows 11 desktop."
+msgstr "Maakt deel uit van de Fenestra-serie, die KDE Plasma het uiterlijk van een Windows 11-bureaublad geeft."
+
+#: contents/ui/VoletDetails.qml
+msgid "Author: %1"
+msgstr "Auteur: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "License: %1"
+msgstr "Licentie: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "GPL-3.0 or later"
+msgstr "GPL-3.0 of later"
+
+#: contents/ui/VoletDetails.qml
+msgid "This software is neither affiliated with nor endorsed by Microsoft Corporation. Windows is a trademark of Microsoft Corporation."
+msgstr "Deze software is niet verbonden aan Microsoft Corporation en wordt niet door Microsoft Corporation goedgekeurd. Windows is een handelsmerk van Microsoft Corporation."
+
+#: contents/ui/VoletDetails.qml
+msgid "Result ranking adapted from MFile Search by MCC45TR (GPL-3.0)."
+msgstr "Rangschikking van resultaten aangepast van MFile Search door MCC45TR (GPL-3.0)."
+
+#: contents/ui/VoletDetails.qml
+msgid "Close"
+msgstr "Sluiten"
+
+#: contents/ui/ConfigGeneral.qml
+msgid "Show only a magnifier in the taskbar"
+msgstr "Alleen een vergrootglas op de taakbalk weergeven"
+
+#: contents/ui/BandeauBas.qml
+msgid "Type here to search"
+msgstr "Typ hier om te zoeken"
+
+#: contents/ui/BoutonReglages.qml
+msgid "Settings"
+msgstr "Instellingen"
+
+#: contents/ui/BandeauBas.qml
+msgid "More options"
+msgstr "Meer opties"

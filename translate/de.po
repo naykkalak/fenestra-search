@@ -4,7 +4,7 @@
 # Machine-assisted translation — to be reviewed by a native speaker
 msgid ""
 msgstr ""
-"Project-Id-Version: Fenestra Search 1.0\n"
+"Project-Id-Version: Fenestra Search 1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/naykkalak/fenestra-search/issues\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +86,7 @@ msgstr "Weitere Ergebnisse"
 
 #: contents/ui/FenetreRecherche.qml:122
 msgid "Search “%1” on %2"
-msgstr "„%1“ mit %2 suchen"
+msgstr "„%1“ auf %2 suchen"
 
 #: contents/ui/FenetreRecherche.qml:128
 msgid "Web search"
@@ -124,3 +124,106 @@ msgstr "Ordner"
 msgid "Web"
 msgstr "Web"
 
+#: contents/ui/VoletDetails.qml
+msgid "Best match"
+msgstr "Beste Übereinstimmung"
+
+#: contents/ui/VoletDetails.qml
+msgid "Calculation"
+msgstr "Berechnung"
+
+#: contents/ui/VoletDetails.qml
+msgid "Setting"
+msgstr "Einstellung"
+
+#: contents/ui/VoletDetails.qml
+msgid "Application"
+msgstr "Anwendung"
+
+#: contents/ui/VoletDetails.qml
+msgid "Folder"
+msgstr "Ordner"
+
+#: contents/ui/VoletDetails.qml
+msgid "Image"
+msgstr "Bild"
+
+#: contents/ui/VoletDetails.qml
+msgid "Document"
+msgstr "Dokument"
+
+#: contents/ui/VoletDetails.qml
+msgid "File"
+msgstr "Datei"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open"
+msgstr "Öffnen"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open file location"
+msgstr "Dateispeicherort öffnen"
+
+#: contents/ui/VoletDetails.qml
+msgid "Copy path"
+msgstr "Pfad kopieren"
+
+#: contents/ui/VoletDetails.qml
+msgid "Search settings"
+msgstr "Sucheinstellungen"
+
+#: contents/ui/VoletDetails.qml
+msgid "Configure Fenestra Search…"
+msgstr "Fenestra Search einrichten …"
+
+#: contents/ui/VoletDetails.qml
+msgid "About Fenestra Search"
+msgstr "Über Fenestra Search"
+
+#: contents/ui/VoletDetails.qml
+msgid "Version %1"
+msgstr "Version %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "Part of the Fenestra series, which gives KDE Plasma the look of a Windows 11 desktop."
+msgstr "Teil der Fenestra-Serie, die KDE Plasma das Aussehen eines Windows-11-Desktops gibt."
+
+#: contents/ui/VoletDetails.qml
+msgid "Author: %1"
+msgstr "Autor: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "License: %1"
+msgstr "Lizenz: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "GPL-3.0 or later"
+msgstr "GPL-3.0 oder später"
+
+#: contents/ui/VoletDetails.qml
+msgid "This software is neither affiliated with nor endorsed by Microsoft Corporation. Windows is a trademark of Microsoft Corporation."
+msgstr "Diese Software steht in keiner Verbindung zu Microsoft Corporation und wird nicht von ihr unterstützt. Windows ist eine Marke der Microsoft Corporation."
+
+#: contents/ui/VoletDetails.qml
+msgid "Result ranking adapted from MFile Search by MCC45TR (GPL-3.0)."
+msgstr "Ergebnis-Sortierung nach MFile Search von MCC45TR (GPL-3.0)."
+
+#: contents/ui/VoletDetails.qml
+msgid "Close"
+msgstr "Schließen"
+
+#: contents/ui/ConfigGeneral.qml
+msgid "Show only a magnifier in the taskbar"
+msgstr "Nur eine Lupe in der Taskleiste anzeigen"
+
+#: contents/ui/BandeauBas.qml
+msgid "Type here to search"
+msgstr "Zur Suche hier eingeben"
+
+#: contents/ui/BoutonReglages.qml
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: contents/ui/BandeauBas.qml
+msgid "More options"
+msgstr "Weitere Optionen"

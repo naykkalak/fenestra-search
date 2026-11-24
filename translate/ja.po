@@ -4,7 +4,7 @@
 # Machine-assisted translation — to be reviewed by a native speaker
 msgid ""
 msgstr ""
-"Project-Id-Version: Fenestra Search 1.0\n"
+"Project-Id-Version: Fenestra Search 1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/naykkalak/fenestra-search/issues\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +90,7 @@ msgstr "%2 で「%1」を検索"
 
 #: contents/ui/FenetreRecherche.qml:128
 msgid "Web search"
-msgstr "Web 検索"
+msgstr "ウェブ検索"
 
 #: contents/ui/ListeResultats.qml:61
 msgid "Searching…"
@@ -124,3 +124,106 @@ msgstr "フォルダー"
 msgid "Web"
 msgstr "Web"
 
+#: contents/ui/VoletDetails.qml
+msgid "Best match"
+msgstr "最も一致する検索結果"
+
+#: contents/ui/VoletDetails.qml
+msgid "Calculation"
+msgstr "計算"
+
+#: contents/ui/VoletDetails.qml
+msgid "Setting"
+msgstr "設定"
+
+#: contents/ui/VoletDetails.qml
+msgid "Application"
+msgstr "アプリ"
+
+#: contents/ui/VoletDetails.qml
+msgid "Folder"
+msgstr "フォルダー"
+
+#: contents/ui/VoletDetails.qml
+msgid "Image"
+msgstr "画像"
+
+#: contents/ui/VoletDetails.qml
+msgid "Document"
+msgstr "ドキュメント"
+
+#: contents/ui/VoletDetails.qml
+msgid "File"
+msgstr "ファイル"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open"
+msgstr "開く"
+
+#: contents/ui/VoletDetails.qml
+msgid "Open file location"
+msgstr "ファイルの場所を開く"
+
+#: contents/ui/VoletDetails.qml
+msgid "Copy path"
+msgstr "パスをコピー"
+
+#: contents/ui/VoletDetails.qml
+msgid "Search settings"
+msgstr "検索の設定"
+
+#: contents/ui/VoletDetails.qml
+msgid "Configure Fenestra Search…"
+msgstr "Fenestra Search を設定…"
+
+#: contents/ui/VoletDetails.qml
+msgid "About Fenestra Search"
+msgstr "Fenestra Search について"
+
+#: contents/ui/VoletDetails.qml
+msgid "Version %1"
+msgstr "バージョン %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "Part of the Fenestra series, which gives KDE Plasma the look of a Windows 11 desktop."
+msgstr "KDE Plasma に Windows 11 のデスクトップの外観を与える Fenestra シリーズの一部です。"
+
+#: contents/ui/VoletDetails.qml
+msgid "Author: %1"
+msgstr "作者: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "License: %1"
+msgstr "ライセンス: %1"
+
+#: contents/ui/VoletDetails.qml
+msgid "GPL-3.0 or later"
+msgstr "GPL-3.0 以降"
+
+#: contents/ui/VoletDetails.qml
+msgid "This software is neither affiliated with nor endorsed by Microsoft Corporation. Windows is a trademark of Microsoft Corporation."
+msgstr "このソフトウェアは Microsoft Corporation とは関係がなく、承認も受けていません。Windows は Microsoft Corporation の商標です。"
+
+#: contents/ui/VoletDetails.qml
+msgid "Result ranking adapted from MFile Search by MCC45TR (GPL-3.0)."
+msgstr "検索結果の並べ替えは MCC45TR による MFile Search を元にしています (GPL-3.0)。"
+
+#: contents/ui/VoletDetails.qml
+msgid "Close"
+msgstr "閉じる"
+
+#: contents/ui/ConfigGeneral.qml
+msgid "Show only a magnifier in the taskbar"
+msgstr "タスクバーに虫眼鏡のみを表示する"
+
+#: contents/ui/BandeauBas.qml
+msgid "Type here to search"
+msgstr "ここに入力して検索"
+
+#: contents/ui/BoutonReglages.qml
+msgid "Settings"
+msgstr "設定"
+
+#: contents/ui/BandeauBas.qml
+msgid "More options"
+msgstr "その他のオプション"

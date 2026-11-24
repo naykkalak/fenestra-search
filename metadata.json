@@ -7,13 +7,24 @@
             }
         ],
         "Category": "Utilities",
-        "Description": "Windows 11 style search box for the panel",
+        "Description": "Windows 11 style search box for the panel, part of the Fenestra series",
         "Icon": "search",
         "Id": "org.fenestra.search",
         "License": "GPL-3.0+",
         "Name": "Fenestra Search",
-        "Version": "1.0",
-        "Website": "https://github.com/naykkalak/fenestra-search"
+        "Version": "2.1",
+        "Website": "https://github.com/naykkalak/fenestra-search",
+        "Description[fr]": "Zone de recherche façon Windows 11 pour la barre des tâches, de la série Fenestra",
+        "Description[de]": "Suchfeld im Stil von Windows 11 für die Kontrollleiste, aus der Fenestra-Serie",
+        "Description[es]": "Cuadro de búsqueda estilo Windows 11 para el panel, de la serie Fenestra",
+        "Description[it]": "Casella di ricerca in stile Windows 11 per il pannello, della serie Fenestra",
+        "Description[pt_BR]": "Caixa de pesquisa estilo Windows 11 para o painel, da série Fenestra",
+        "Description[nl]": "Zoekvak in Windows 11-stijl voor het paneel, uit de Fenestra-serie",
+        "Description[pl]": "Pole wyszukiwania w stylu Windows 11 dla panelu, z serii Fenestra",
+        "Description[ru]": "Поле поиска в стиле Windows 11 для панели, из серии Fenestra",
+        "Description[tr]": "Panel için Windows 11 tarzı arama kutusu, Fenestra serisinden",
+        "Description[ja]": "パネル用の Windows 11 風検索ボックス（Fenestra シリーズ）",
+        "Description[zh_CN]": "适用于面板的 Windows 11 风格搜索框（Fenestra 系列）"
     },
     "X-Plasma-API-Minimum-Version": "6.0",
     "X-Plasma-Provides": [

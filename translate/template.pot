@@ -121,3 +121,106 @@ msgstr ""
 msgid "Web"
 msgstr ""
 
+#: contents/ui/VoletDetails.qml
+msgid "Best match"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Calculation"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Setting"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Application"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Folder"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Image"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Document"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "File"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Open"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Open file location"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Copy path"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Search settings"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Configure Fenestra Search…"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "About Fenestra Search"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Version %1"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Part of the Fenestra series, which gives KDE Plasma the look of a Windows 11 desktop."
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Author: %1"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "License: %1"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "GPL-3.0 or later"
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "This software is neither affiliated with nor endorsed by Microsoft Corporation. Windows is a trademark of Microsoft Corporation."
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Result ranking adapted from MFile Search by MCC45TR (GPL-3.0)."
+msgstr ""
+
+#: contents/ui/VoletDetails.qml
+msgid "Close"
+msgstr ""
+
+#: contents/ui/ConfigGeneral.qml
+msgid "Show only a magnifier in the taskbar"
+msgstr ""
+
+#: contents/ui/BandeauBas.qml
+msgid "Type here to search"
+msgstr ""
+
+#: contents/ui/BoutonReglages.qml
+msgid "Settings"
+msgstr ""
+
+#: contents/ui/BandeauBas.qml
+msgid "More options"
+msgstr ""
