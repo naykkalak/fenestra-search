@@ -7,23 +7,24 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
-// Capsule de la barre des tâches : elle n'est PAS un champ de saisie.
-// Elle affiche le texte tapé dans la fenêtre (champ invisible), avec un curseur simulé :
-// pas de problème de clavier sous Wayland en début de session.
+// Taskbar capsule: it is NOT an input field.
+// It shows the text typed in the window (invisible field), with a simulated cursor:
+// no keyboard problem under Wayland at the start of a session.
 Item {
     id: capsule
 
     property bool ouverte: false
+    property bool modeLoupe: false   // 2.0: magnifier only
     property string texte: ""
     signal basculer()
     signal ouvrir()
 
     readonly property bool themeSombre: Kirigami.Theme.textColor.hslLightness > 0.5
 
-    // ── Oreille PARTAGÉE avec le menu Démarrer (Fenestra Menu 11) ──
-    // Une seule poignée passive posée sur la racine de la barre (objectName
-    // fenestraOreilleBarre) : chaque widget s'y branche. Clic sur la barre en dehors
-    // de la capsule -> fenêtre fermée.
+    // ── "Ear" SHARED with the Start menu (Fenestra Menu 11) ──
+    // A single passive handle placed on the panel root (objectName
+    // fenestraOreilleBarre): each widget plugs into it. A click on the panel outside
+    // the capsule -> window closed.
     property QtObject oreille: null
 
     function racineBarre() {
@@ -67,10 +68,11 @@ Item {
             remettreOreille();
         }
     }
-    Component.onDestruction: oreille = null   // partagée : on ne la détruit pas
+    Component.onDestruction: oreille = null   // shared: it is not destroyed
 
     Rectangle {
         id: fond
+        visible: !capsule.modeLoupe
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
@@ -96,7 +98,7 @@ Item {
                 source: Qt.resolvedUrl("../images/loupe.svg")
             }
 
-            // affichage façon champ de saisie : texte tapé + curseur clignotant
+            // input-field-like display: typed text + blinking cursor
             Item {
                 id: affichage
                 Layout.fillWidth: true
@@ -108,7 +110,7 @@ Item {
                     id: libelle
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.verticalCenterOffset: -1
-                    // un texte trop long défile vers la gauche : la fin reste visible
+                    // a text that is too long scrolls to the left: the end stays visible
                     x: Math.min(0, parent.width - curseur.width - 1 - contentWidth)
                     text: affichage.vide ? i18n("Search") : capsule.texte
                     color: affichage.vide
@@ -119,7 +121,7 @@ Item {
                     font.family: Kirigami.Theme.defaultFont.family
                 }
 
-                Rectangle {   // curseur : au début si vide, après le texte sinon
+                Rectangle {   // cursor: at the start when empty, after the text otherwise
                     id: curseur
                     width: 1
                     height: Math.round(libelle.font.pixelSize * 1.2)
@@ -143,6 +145,44 @@ Item {
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.IBeamCursor
+            onClicked: capsule.ouverte ? capsule.basculer() : capsule.ouvrir()
+        }
+    }
+
+    // 2.0: magnifier mode, taskbar button (hover like the other buttons)
+    Item {
+        id: boutonLoupe
+        visible: capsule.modeLoupe
+        anchors.fill: parent
+        Rectangle {   // 2.0: Start button frame (Menu 11)
+            anchors.fill: parent
+            anchors.leftMargin: -2   // 2.0: 48 px frame, 4 px gap, like the panel buttons
+            anchors.rightMargin: -2
+            anchors.topMargin: -4
+            anchors.bottomMargin: -4
+            radius: 5
+            color: capsule.themeSombre ? "#26ffffff" : "#80ffffff"
+            border.width: 1
+            border.color: capsule.themeSombre ? "#1affffff" : "#14000000"
+            opacity: (survolLoupe.containsMouse || capsule.ouverte) ? 1.0 : 0.0
+            Behavior on opacity { NumberAnimation { duration: 100 } }
+        }
+        Image {   // 2.0: magnifier from "About", flipped (handle at the bottom right, like the other search boxes)
+            anchors.centerIn: parent
+            width: Math.round(Math.min(parent.width, parent.height) * 0.95)
+            height: width
+            source: Qt.resolvedUrl("../images/preferences-system-search.svg")
+            sourceSize.width: width * 2
+            sourceSize.height: height * 2
+            fillMode: Image.PreserveAspectFit
+            mirror: true
+            smooth: true
+        }
+        MouseArea {
+            id: survolLoupe
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
             onClicked: capsule.ouverte ? capsule.basculer() : capsule.ouvrir()
         }
     }

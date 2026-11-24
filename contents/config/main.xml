@@ -13,6 +13,10 @@
     <entry name="largeurCran" type="Int">
       <default>7</default>
     </entry>
+    <!-- 2.0 : seulement une loupe dans la barre des tâches, à la place de la capsule -->
+    <entry name="modeLoupe" type="Bool">
+      <default>false</default>
+    </entry>
     <!-- moteur de la recherche web : kde (celui de KDE), duckduckgo, google, bing,
          qwant, ecosia, startpage, brave -->
     <entry name="moteurWeb" type="String">

@@ -5,19 +5,19 @@
  * SPDX-FileCopyrightText: MCC45TR, GPL-3.0 — https://github.com/MCC45TR/kde-plasma6-widgets
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Classement des résultats de KRunner :
- *   1. une correspondance exacte passe devant tout (le nom sans son extension compte :
- *      « document1 » trouve exactement « Document1.docx ») ;
- *   2. puis l'ordre des rubriques : applications, fichiers, documents, dossiers,
- *      calcul, web, le reste ;
- *   3. puis la ressemblance avec le texte tapé.
- * Les résultats sont ensuite regroupés par rubrique. Une rubrique d'un seul résultat
- * (hors applications et correspondance exacte) va dans « Autres résultats », en dernier.
+ * Ranking of the KRunner results:
+ *   1. an exact match comes before everything (the name without its extension counts:
+ *      "document1" matches "Document1.docx" exactly);
+ *   2. then the order of the sections: applications, files, documents, folders,
+ *      calculation, web, the rest;
+ *   3. then the similarity with the typed text.
+ * The results are then grouped by section. A section with a single result
+ * (except applications and exact match) goes into "Other results", at the end.
  */
 .pragma library
 
-// Les noms de rubriques de KRunner sont traduits par le bureau : on les reconnaît
-// par des mots-clés dans plusieurs langues.
+// The KRunner section names are translated by the desktop: they are recognized
+// by keywords in several languages.
 var MOTS = {
     app: ["application", "aplicación", "aplicacion", "aplicação", "aplicacao", "applicazione", "aplicație",
           "aplicatie", "anwendung", "toepassing", "aplikac", "sovellus", "program", "uygulama",
@@ -74,7 +74,7 @@ function genre(rubrique) {
     return "inconnu";
 }
 
-// plus petit = plus haut dans la liste
+// smaller = higher in the list
 function priorite(rubrique) {
     var g = genre(rubrique);
     return {app: 1, fichier: 2, document: 3, dossier: 4, calcul: 5, web: 6, autre: 100}[g] || 50;
@@ -94,15 +94,15 @@ function estDossier(rubrique, url, icone) {
         || contient(rubrique, MOTS.dossier);
 }
 
-// suggestions de la Logithèque (« Obtenir … ») : applications non installées,
-// absentes de la recherche de Windows 11 -> masquées
+// Software Center suggestions ("Get …"): applications not installed,
+// absent from the Windows 11 search -> hidden
 function estLogitheque(rubrique, url) {
     return minuscule(url).indexOf("appstream:") === 0
         || ["logithèque", "software center", "software centre", "softwarecenter", "discover",
             "centro de software", "centro software", "centre logiciel"].indexOf(minuscule(rubrique)) !== -1;
 }
 
-// puces de filtre : Tout, Applications, Documents, Images, Dossiers, Web
+// filter chips: All, Applications, Documents, Images, Folders, Web
 function passeFiltre(filtre, r) {
     var url = minuscule(r.url), ic = minuscule(r.decoration), ext = extension(r.url);
     switch (filtre) {
@@ -123,7 +123,7 @@ function passeFiltre(filtre, r) {
     return true;
 }
 
-// ressemblance entre le texte tapé q et le nom t (déjà en minuscules), de 0 à 1
+// similarity between the typed text q and the name t (already lowercase), from 0 to 1
 function ressemblance(q, t) {
     if (t === q) return 1;
     var i = t.indexOf(q);
@@ -147,8 +147,8 @@ function exact(nom, q) {
     return nom === q || (p > 0 && nom.substring(0, p) === q);
 }
 
-// bruts : [{display, decoration, category, url, subtext, duplicateId, index}]
-// rend la liste à plat, chaque élément portant sa rubrique d'affichage (rubrique)
+// raw: [{display, decoration, category, url, subtext, duplicateId, index}]
+// returns the flat list, each item carrying its display section (rubrique)
 function classer(bruts, texte, filtre, maximum, autresResultats) {
     var q = minuscule(texte);
     var notes = [];
@@ -169,7 +169,7 @@ function classer(bruts, texte, filtre, maximum, autresResultats) {
     });
     if (maximum > 0 && notes.length > maximum) notes = notes.slice(0, maximum);
 
-    // regroupement par rubrique, dans l'ordre d'apparition
+    // grouping by section, in order of appearance
     var groupes = {}, ordre = [];
     for (var j = 0; j < notes.length; j++) {
         var c = notes[j].r.category || "Other";
@@ -189,7 +189,7 @@ function classer(bruts, texte, filtre, maximum, autresResultats) {
         }
     }
     gardees.sort(function(a, b) { return priorite(a) - priorite(b); });
-    // la rubrique qui contient une correspondance exacte passe en tête
+    // the section containing an exact match comes first
     var finales = gardees.filter(function(n) { return exactes.indexOf(n) !== -1; })
         .concat(gardees.filter(function(n) { return exactes.indexOf(n) === -1; }));
 
@@ -206,9 +206,9 @@ function classer(bruts, texte, filtre, maximum, autresResultats) {
     return liste;
 }
 
-// chemin affiché sous le nom : relatif au dossier personnel
+// path shown under the name: relative to the home folder
 function cheminCourt(r) {
-    if (r.web) return r.subtext;      // recherche web : le site du moteur
+    if (r.web) return r.subtext;      // web search: the engine's site
     var p = String(r.url || "").replace("file://", "").replace(/^\/home\/[^\/]+\//, "");
     return p || r.subtext || "";
 }

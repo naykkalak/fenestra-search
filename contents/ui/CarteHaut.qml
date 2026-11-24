@@ -8,13 +8,13 @@ import QtQuick.Layouts
 import QtCore
 import org.kde.kirigami as Kirigami
 
-// Carte en tête des résultats :
-//  - calcul : le résultat en grand (clic = copié dans le presse-papier par KRunner) ;
-//  - document en premier résultat : sa vignette (celle que KDE a déjà fabriquée).
+// Card at the top of the results:
+//  - calculation: the result in large type (click = copied to the clipboard by KRunner);
+//  - document as first result: its thumbnail (the one KDE has already made).
 Rectangle {
     id: carte
 
-    property var resultat: null       // résultat montré
+    property var resultat: null       // result shown
     property bool calcul: false
     property string texte: ""
     signal lancer(var resultat)
@@ -22,7 +22,7 @@ Rectangle {
     readonly property color accent: Kirigami.Theme.highlightColor
     readonly property color teinte: Kirigami.Theme.textColor
 
-    // chemin local du résultat (sans file://, décodé)
+    // local path of the result (without file://, decoded)
     readonly property string chemin: {
         var u = resultat ? String(resultat.url || "") : "";
         if (u.indexOf("file://") === 0) u = u.substring(7);
@@ -36,7 +36,7 @@ Rectangle {
         return ["pdf", "odt", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "ods", "odp", "csv", "cbz", "epub"]
                .indexOf(p.substring(d + 1)) !== -1;
     }
-    // vignette du cache de KDE (~/.cache/thumbnails/normal/<md5 de l'adresse>.png)
+    // thumbnail from the KDE cache (~/.cache/thumbnails/normal/<md5 of the address>.png)
     readonly property string vignette: {
         if (calcul || !document) return "";
         var uri = "file://" + encodeURI(chemin).replace(/#/g, "%23").replace(/\?/g, "%3F");

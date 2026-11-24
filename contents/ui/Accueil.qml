@@ -6,17 +6,20 @@
 import QtQuick
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.extras as PlasmaExtras
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.kde.ksvg as KSvg
 
-// Accueil (rien de tapé), deux colonnes façon Windows 11 :
-//  - à gauche : Récent (documents récents, comme le menu Démarrer) ;
-//  - à droite : Recherches rapides (modules de la Configuration du système)
-//    puis Top des applications (applications récentes).
+// Home (nothing typed), two columns like Windows 11:
+//  - on the left: Recent (recent documents, like the Start menu);
+//  - on the right: Quick searches (System Settings modules)
+//    then Top apps (recent applications).
 Item {
     id: accueil
 
-    property var modeleApps: null     // modèles Kicker, ceux du menu Démarrer
+    property var modeleApps: null     // Kicker models, the same as the Start menu
     property var modeleDocs: null
-    property int revision: 0          // change à chaque ouverture : listes relues
+    property int revision: 0          // changes at each opening: lists are read again
     signal ouvrirModule(string module)
     signal fini()
 
@@ -24,7 +27,7 @@ Item {
     readonly property color teinte: Kirigami.Theme.textColor
 
     function donnee(m, i, role) {
-        revision;   // relu à chaque ouverture
+        revision;   // read again at each opening
         if (!m || i >= m.rowCount()) return "";
         var d = m.data(m.index(i, 0), role);
         return d === undefined || d === null ? "" : d;
@@ -35,7 +38,7 @@ Item {
         fini();
     }
 
-    // ---- Colonne de gauche : Récent ----
+    // ---- Left column: Recent ----
     Column {
         id: colonneRecent
         anchors.top: parent.top
@@ -69,7 +72,7 @@ Item {
                         return (typeof d === "string") ? d : "";
                     }
                 }
-                // nom + dossier, comme les recommandations du menu Démarrer
+                // name + folder, like the Start menu recommendations
                 Column {
                     anchors.left: iconeDoc.right
                     anchors.leftMargin: 10
@@ -94,14 +97,14 @@ Item {
                         font.family: Kirigami.Theme.defaultFont.family
                         font.pixelSize: Math.round(Kirigami.Theme.defaultFont.pixelSize * 0.9)
                         color: Qt.rgba(accueil.teinte.r, accueil.teinte.g, accueil.teinte.b, 0.6)
-                        // 266 = adresse du document dans le modèle Kicker
+                        // 266 = document address in the Kicker model
                         text: String(accueil.donnee(accueil.modeleDocs, index, 266))
                                 .replace(/^file:\/\//, "")
                                 .replace(/\/[^\/]*$/, "")
                                 .replace(/^\/home\/[^\/]+/, i18n("Home"))
                     }
                 }
-                Rectangle {   // surlignage au survol, valeurs du menu Démarrer
+                Rectangle {   // hover highlight, values from the Start menu
                     anchors.fill: parent
                     anchors.leftMargin: -12
                     visible: survolDoc.containsMouse
@@ -122,7 +125,7 @@ Item {
         }
     }
 
-    // ---- Colonne de droite ----
+    // ---- Right column ----
     Column {
         id: colonneDroite
         anchors.top: parent.top
@@ -130,7 +133,7 @@ Item {
         width: accueil.largeurColonne
         spacing: 2
 
-        // Recherches rapides (repliables)
+        // Quick searches, with the Windows 11 "…" on the right (1.1: replaces the V)
         Item {
             id: titreRapides
             width: parent.width
@@ -145,28 +148,6 @@ Item {
                 level: 5
                 font.weight: Font.Bold
                 color: Qt.rgba(accueil.teinte.r, accueil.teinte.g, accueil.teinte.b, 0.8)
-            }
-            Item {
-                anchors.right: parent.right
-                anchors.rightMargin: -6
-                anchors.verticalCenter: texteRapides.verticalCenter
-                width: 28
-                height: 24
-                Rectangle {
-                    anchors.fill: parent
-                    radius: 6
-                    color: survolChevron.hovered ? (Kirigami.Theme.textColor.hslLightness > 0.5 ? "#30ffffff" : "#30000000") : "transparent"
-                }
-                Kirigami.Icon {
-                    anchors.centerIn: parent
-                    width: 16
-                    height: 16
-                    source: titreRapides.ouvert ? "arrow-down" : "arrow-up"
-                    isMask: true
-                    color: accueil.teinte
-                }
-                HoverHandler { id: survolChevron }
-                TapHandler { onTapped: titreRapides.ouvert = !titreRapides.ouvert }
             }
         }
 
@@ -190,7 +171,7 @@ Item {
                 readonly property real largeurPuce: (width - spacing) / 2
 
                 Repeater {
-                    // module : fichier .desktop de la Configuration du système
+                    // module: .desktop file of System Settings
                     model: [
                         { libelle: i18n("Audio"),      module: "kcm_pulseaudio" },
                         { libelle: i18n("Bluetooth"),  module: "kcm_bluetooth" },
@@ -257,7 +238,7 @@ Item {
                     height: 110
                     visible: libelleApp.text.length > 0
 
-                    Rectangle {   // même style que le bouton Démarrer et la barre des tâches
+                    Rectangle {   // same style as the Start button and the taskbar
                         anchors.fill: parent
                         radius: 8
                         color: survolTuile.hovered ? (Kirigami.Theme.textColor.hslLightness > 0.5 ? "#40ffffff" : "#d0ffffff") : (Kirigami.Theme.textColor.hslLightness > 0.5 ? "#26ffffff" : "#80ffffff")

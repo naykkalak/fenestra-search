@@ -14,9 +14,9 @@ import org.kde.plasma.private.kicker 0.1 as Kicker
 import "Classement.js" as Classement
 import "Moteurs.js" as Moteurs
 
-// Fenêtre de recherche : SA PROPRE fenêtre (PlasmaCore.Dialog), comme le menu Démarrer.
-// La fenêtre standard d'un widget de barre n'obtient pas le clavier en début de session
-// sous Wayland ; une Dialog, si.
+// Search window: ITS OWN window (PlasmaCore.Dialog), like the Start menu.
+// A panel widget's standard window does not get the keyboard at the start of a session
+// under Wayland; a Dialog does.
 PlasmaCore.Dialog {
     id: fenetre
 
@@ -24,14 +24,35 @@ PlasmaCore.Dialog {
     readonly property string texte: racine ? racine.texteRecherche : ""
     property string filtre: "All"
 
-    width: 800
-    height: 830
-    location: Plasmoid.location
+    // 2.1: total window size (frame included); the content area is this minus the frame margins
+    // 2.1: the window width follows Fenestra Menu 11: its "Menu size" setting is read by
+    // code/taille-menu11.sh (0 = automatic, 1 = small, 2 = large)
+    property int tailleMenu: 0
+    readonly property int colonnesMenu: {
+        if (tailleMenu === 1) return 6;
+        if (tailleMenu === 2) return 8;
+        var w = racine ? racine.screenGeometry.width : 1920;   // automatic: same rule as Menu 11
+        return w >= 2500 ? 8 : (w >= 1900 ? 7 : 6);
+    }
+    // Menu 11 content width: 697 px for 7 columns, otherwise 96 px per column, + 2 x 8 px of side margin
+    readonly property int largeurContenu: (colonnesMenu === 7 ? 697 : 96 * colonnesMenu) + 16
+    readonly property int largeurListe: 310    // results list: fixed width, the right pane takes the rest
+    readonly property int largeurTotale: largeurContenu + margins.left + margins.right
+    onWidthChanged: if (visible && racine) racine.placer()   // the size changes: centered again
+    // 2.1: same height as the Menu 11 window (820 px), never taller than the free height
+    // of the screen (same rule as Menu 11: small screens, 125 % scaling)
+    readonly property int hauteurTotale: Math.min(820, Math.max(Kirigami.Units.gridUnit * 20,
+        (racine ? racine.availableScreenRect.height : 1080) - Math.round(Kirigami.Units.gridUnit * 1.85)))
+    width: largeurTotale
+    height: hauteurTotale
+    // 2.1: four rounded corners: a window placed at the bottom = a "floating" window
+    // (its position is computed by placer() in main.qml)
+    location: Plasmoid.location === PlasmaCore.Types.BottomEdge ? PlasmaCore.Types.Floating : Plasmoid.location
     flags: Qt.WindowStaysOnTopHint
     hideOnWindowDeactivate: true
     visible: false
 
-    property int ouvertures: 0         // compte les ouvertures : l'accueil se relit
+    property int ouvertures: 0         // counts the openings: the home screen is read again
 
     function activer() {
         fenetre.requestActivate();
@@ -47,24 +68,26 @@ PlasmaCore.Dialog {
             ouvertures++;
             activer();
             racine.placer();
-            Qt.callLater(racine.placer);      // une fois la taille réelle connue
-            Qt.callLater(activer);            // une seconde fois, fenêtre réellement affichée
+            Qt.callLater(racine.placer);      // once the real size is known
+            Qt.callLater(activer);            // a second time, window really shown
         } else {
             saisie.text = "";
             filtre = "All";
-            if (racine.fenetreOuverte) racine.fenetreOuverte = false;   // fermée seule
+            roueReglages.fermerMenu();   // 2.1: the menus do not stay open for the next opening
+            bandeau.fermerMenu();
+            if (racine.fenetreOuverte) racine.fenetreOuverte = false;   // closed by itself
         }
     }
 
-    // ── Moteur : KRunner (via Milou) ──
-    property string requete: ""        // envoyée à KRunner 60 ms après la dernière touche
-    property var resultats: []         // classés et regroupés (Classement.js)
+    // ── Engine: KRunner (via Milou) ──
+    property string requete: ""        // sent to KRunner 60 ms after the last key
+    property var resultats: []         // ranked and grouped (Classement.js)
     property bool enCours: false
-    property var carteResultat: null   // carte du haut : calcul ou premier document
+    property var carteResultat: null   // top card: calculation or first document
     property bool carteCalcul: false
 
-    // ── Recherche web : dernière ligne de la liste ──
-    property string sortieKde: ""      // moteur choisi dans KDE (lu par code/moteur-kde.sh)
+    // ── Web search: last line of the list ──
+    property string sortieKde: ""      // engine chosen in KDE (read by code/moteur-kde.sh)
     readonly property var moteur: {
         var choix = Plasmoid.configuration.moteurWeb;
         return (choix && choix !== "kde" && Moteurs.trouver(choix)) || Moteurs.depuisKde(sortieKde);
@@ -94,7 +117,7 @@ PlasmaCore.Dialog {
             var o = copie.objectAt(i);
             if (!o) continue;
             var url = (o.url || "").toString();
-            if (Classement.estLogitheque(o.category, url)) continue;   // pas d'applis « à obtenir »
+            if (Classement.estLogitheque(o.category, url)) continue;   // no "to get" apps
             var icone = (o.decoration || "").toString();
             if (icone === "" || icone === "QIcon()")
                 icone = /^https?:\/\//.test(url) ? "internet-web-browser" : "application-x-executable";
@@ -110,8 +133,9 @@ PlasmaCore.Dialog {
         }
         var liste = Classement.classer(bruts, texte, filtre, filtre === "All" ? 20 : 120,
                                        i18n("Other Results"));
+        if (liste.length > 0) liste[0].rubrique = i18n("Best match");   // 1.1: like Windows 11
 
-        // carte du haut : le calcul si KRunner en propose un en premier, sinon le premier résultat
+        // top card: the calculation if KRunner offers one first, otherwise the first result
         var calc = bruts.length > 0 && Classement.estCalcul(bruts[0].category, bruts[0].decoration, bruts[0].duplicateId);
         carteCalcul = calc;
         carteResultat = calc ? bruts[0] : (liste.length > 0 ? liste[0] : null);
@@ -135,7 +159,7 @@ PlasmaCore.Dialog {
         }
     }
 
-    // ouvre un résultat puis ferme la fenêtre
+    // opens a result then closes the window
     function lancer(r) {
         if (!r) return;
         var url = r.url || "";
@@ -144,7 +168,7 @@ PlasmaCore.Dialog {
         } else if (Classement.estApplication(r.category, url, r.duplicateId, r.decoration)) {
             modele.run(modele.index(r.index, 0));
         } else if (url.length > 0 && url.indexOf("http") !== 0) {
-            Qt.openUrlExternally(url);        // fichier ou dossier : ouvert directement
+            Qt.openUrlExternally(url);        // file or folder: opened directly
         } else {
             modele.run(modele.index(r.index, 0));
         }
@@ -152,17 +176,17 @@ PlasmaCore.Dialog {
     }
 
     mainItem: Item {
-        width: 1000
-        height: 780
+        width: fenetre.largeurTotale - fenetre.margins.left - fenetre.margins.right
+        height: fenetre.hauteurTotale - fenetre.margins.top - fenetre.margins.bottom
 
-        // objets non visuels ici : une Dialog n'accepte que des éléments graphiques
+        // non-visual objects here: a Dialog only accepts graphical items
         Milou.ResultsModel {
             id: modele
             queryString: fenetre.requete
             limit: fenetre.filtre === "All" ? 20 : 120
         }
 
-        Timer {   // on attend la fin de la frappe avant d'interroger KRunner
+        Timer {   // wait for the end of typing before querying KRunner
             id: attenteFrappe
             interval: 60
             onTriggered: {
@@ -170,18 +194,18 @@ PlasmaCore.Dialog {
                 fenetre.reclasser();
             }
         }
-        Timer {   // les résultats arrivent par vagues : on regroupe les mises à jour
+        Timer {   // results arrive in waves: the updates are batched
             id: attenteResultats
             interval: 24
             onTriggered: fenetre.reclasser()
         }
-        Timer {   // « Recherche… » ne reste pas affiché indéfiniment
+        Timer {   // "Searching…" does not stay displayed forever
             id: finAttente
             interval: 900
             onTriggered: fenetre.enCours = false
         }
 
-        // moteur web de KDE (Configuration système > Recherche web), lu une fois à l'ouverture
+        // KDE web engine (System Settings > Web Search), read once at opening
         Plasma5Support.DataSource {
             id: lectureKde
             engine: "executable"
@@ -191,15 +215,29 @@ PlasmaCore.Dialog {
                 disconnectSource(source);
             }
         }
+        // 2.1: "Menu size" setting of Fenestra Menu 11, read at start and at each opening
+        Plasma5Support.DataSource {
+            id: lectureTaille
+            engine: "executable"
+            readonly property string commande: "sh '" + String(Qt.resolvedUrl("../code/taille-menu11.sh")).replace("file://", "") + "'"
+            onNewData: (source, donnees) => {
+                var m = /Taille=(\d)/.exec(String(donnees["stdout"] || ""));
+                fenetre.tailleMenu = m ? parseInt(m[1]) : 0;
+                disconnectSource(source);
+            }
+            Component.onCompleted: connectSource(commande)
+        }
         Connections {
             target: fenetre
             function onVisibleChanged() {
-                if (fenetre.visible && Plasmoid.configuration.moteurWeb === "kde")
+                if (!fenetre.visible) return;
+                lectureTaille.connectSource(lectureTaille.commande);
+                if (Plasmoid.configuration.moteurWeb === "kde")
                     lectureKde.connectSource(lectureKde.commande);
             }
         }
 
-        // accueil : même source que le menu Démarrer (Kicker), seulement les récents
+        // home: same source as the Start menu (Kicker), recent items only
         Kicker.RootModel {
             id: modeleRecents
             autoPopulate: false
@@ -216,14 +254,14 @@ PlasmaCore.Dialog {
             Component.onCompleted: refresh()
         }
 
-        // ouverture d'un module de la Configuration du système
+        // opening a System Settings module
         Plasma5Support.DataSource {
             id: commande
             engine: "executable"
             onNewData: (source, donnees) => disconnectSource(source)
         }
 
-        // copie des résultats du modèle, lisible en JavaScript
+        // copy of the model results, readable in JavaScript
         Instantiator {
             id: copie
             model: modele
@@ -249,10 +287,12 @@ PlasmaCore.Dialog {
 
         Item {
             id: cadre
-            width: 800
-            height: 830
+            // Fenestra: exactly the inner area of the window (size minus the frame),
+            // for identical margins on the left, right and bottom
+            width: fenetre.width - fenetre.margins.left - fenetre.margins.right
+            height: fenetre.height - fenetre.margins.top - fenetre.margins.bottom
 
-            // champ invisible : c'est lui qui reçoit la frappe ; la capsule l'affiche
+            // invisible field: it receives the typing; the capsule displays it
             PlasmaComponents.TextField {
                 id: saisie
                 width: 1
@@ -266,7 +306,7 @@ PlasmaCore.Dialog {
                 Keys.onTabPressed: (event) => { event.accepted = true; }
             }
 
-            // ── Puces de filtre (visibles pendant une recherche) ──
+            // ── Filter chips (visible during a search) ──
             Item {
                 id: zonePuces
                 readonly property bool montree: fenetre.texte.length > 0
@@ -276,7 +316,7 @@ PlasmaCore.Dialog {
                 anchors.leftMargin: 12
                 anchors.rightMargin: 12
                 anchors.topMargin: montree ? 10 : 0
-                height: montree ? 32 : 0
+                height: montree ? Math.ceil(Kirigami.Units.gridUnit * 1.8) + 8 : 0   // 1.2: Menu 11 capsules
                 opacity: montree ? 1 : 0
                 clip: true
                 visible: height > 0 || opacity > 0
@@ -288,10 +328,14 @@ PlasmaCore.Dialog {
                     anchors.fill: parent
                     actif: fenetre.filtre
                     onChoisir: (f) => fenetre.filtre = f
+                    onRetour: {   // 1.2: back arrow, returns to the home screen
+                        saisie.text = "";
+                        Qt.callLater(fenetre.activer);
+                    }
                 }
             }
 
-            // ── Carte du haut : calcul ou aperçu du premier document ──
+            // ── Top card: calculation or preview of the first document ──
             CarteHaut {
                 id: carteHaut
                 anchors.top: zonePuces.bottom
@@ -306,16 +350,16 @@ PlasmaCore.Dialog {
                 onLancer: (r) => fenetre.lancer(r)
             }
 
-            // ── Résultats ──
+            // ── Results ──
             ListeResultats {
                 id: listeResultats
                 anchors.top: carteHaut.bottom
                 anchors.topMargin: 6
                 anchors.left: parent.left
-                anchors.right: parent.right
+                anchors.right: volet.visible ? volet.left : parent.right
                 anchors.bottom: bandeau.top
-                anchors.leftMargin: 12
-                anchors.rightMargin: 12
+                anchors.leftMargin: 8   // 2.1: section bar 18 px from the window edge, like the right pane
+                anchors.rightMargin: volet.visible ? 8 : 12   // 2.1: scrollbar 8 px from the right pane
                 anchors.bottomMargin: 12
                 visible: fenetre.texte.length > 0
                 resultats: fenetre.resultats
@@ -324,15 +368,36 @@ PlasmaCore.Dialog {
                 onLancer: (r) => fenetre.lancer(r)
             }
 
-            // ── Accueil (rien de tapé) ──
+            // ── Right pane (1.1): the selected result, its actions, its recent items ──
+            VoletDetails {
+                id: volet
+                anchors.top: carteHaut.bottom
+                anchors.topMargin: 6
+                anchors.right: parent.right
+                anchors.bottom: bandeau.top
+                anchors.rightMargin: 12
+                anchors.bottomMargin: 12
+                width: cadre.width - fenetre.largeurListe - 36   // 2.1: the list keeps its width, the pane takes the rest
+                visible: fenetre.texte.length > 0 && listeResultats.selection !== null
+                resultat: visible ? listeResultats.selection : null
+                onLancer: (r) => fenetre.lancer(r)
+                onFini: fenetre.fermer()
+                onEmplacement: (r) => {
+                    var fait = r && r.index !== undefined && modele.runAction(modele.index(r.index, 0), 0);
+                    if (fait) fenetre.fermer();
+                    else volet.montrerEmplacement();
+                }
+            }
+
+            // ── Home (nothing typed) ──
             Accueil {
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.bottom: bandeau.top
                 anchors.leftMargin: 22
-                anchors.rightMargin: 32
-                anchors.topMargin: 16
+                anchors.rightMargin: 12   // 2.1: home content 18 px from the window edge on the right, like the results
+                anchors.topMargin: 26   // 2.0: 10 px more, below the gear
                 anchors.bottomMargin: 12
                 visible: fenetre.texte.length === 0
                 modeleApps: modeleRecents.count > 0 ? modeleRecents.modelForRow(0) : null
@@ -340,22 +405,48 @@ PlasmaCore.Dialog {
                 revision: fenetre.ouvertures
                 onFini: fenetre.fermer()
                 onOuvrirModule: (module) => {
-                    commande.connectSource("kioclient exec /usr/share/applications/" + module + ".desktop");
+                    // module .desktop file, otherwise System Settings directly
+                    commande.connectSource("kioclient exec /usr/share/applications/" + module + ".desktop || systemsettings " + module);
                     fenetre.fermer();
                 }
             }
 
-            // ── Bandeau du bas ──
+            // ── Gear (1.2): same place on the home screen and in the results ──
+            BoutonReglages {
+                id: roueReglages
+                anchors.top: parent.top
+                anchors.topMargin: 10 + (Math.ceil(Kirigami.Units.gridUnit * 1.8) + 8 - height) / 2
+                anchors.right: parent.right
+                anchors.rightMargin: 12
+                onOuvrirModule: (module) => {
+                    // module .desktop file, otherwise System Settings directly
+                    commande.connectSource("kioclient exec /usr/share/applications/" + module + ".desktop || systemsettings " + module);
+                    fenetre.fermer();
+                }
+                onConfigurer: {
+                    fenetre.fermer();
+                    Plasmoid.internalAction("configure").trigger();
+                }
+            }
+
+            // ── Bottom strip ──
             BandeauBas {
                 id: bandeau
+                // 2.1: inside the frame, like the Menu 11 footer (the four corners are rounded)
                 anchors.left: parent.left
-                anchors.leftMargin: -7
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
-                recherche: fenetre.texte.length > 0
-                onRetour: {
-                    saisie.text = "";
-                    Qt.callLater(fenetre.activer);
+                loupe: racine.modeLoupe === true
+                texte: fenetre.texte
+                actif: fenetre.visible
+                margeGauche: fenetre.margins.left
+                margeDroite: fenetre.margins.right
+                margeBas: fenetre.margins.bottom
+                onFocaliser: Qt.callLater(fenetre.activer)
+                onAPropos: {
+                    // the search stays open behind "About" (given back when it closes)
+                    fenetre.hideOnWindowDeactivate = false;
+                    racine.ouvrirAPropos();
                 }
             }
         }

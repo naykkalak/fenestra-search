@@ -12,6 +12,7 @@ import "Moteurs.js" as Moteurs
 
 KCM.SimpleKCM {
     property alias cfg_largeurCran: largeur.value
+    property alias cfg_modeLoupe: loupeSeule.checked
     property string cfg_moteurWeb
 
     Kirigami.FormLayout {
@@ -19,6 +20,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Search box width:")
             QQC2.Slider {
                 id: largeur
+                enabled: !loupeSeule.checked
                 from: 0
                 to: 12
                 stepSize: 1
@@ -27,6 +29,15 @@ KCM.SimpleKCM {
             }
             QQC2.Label { text: largeur.value }
         }
+
+        Item { implicitHeight: Kirigami.Units.largeSpacing }   // 2.0: some space around the checkbox
+
+        QQC2.CheckBox {
+            id: loupeSeule
+            text: i18n("Show only a magnifier in the taskbar")
+        }
+
+        Item { implicitHeight: Kirigami.Units.largeSpacing }
 
         QQC2.ComboBox {
             id: moteur
