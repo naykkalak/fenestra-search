@@ -9,7 +9,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PC3
 
 // Filter chips in the theme style (translucent white + thin border),
-// the active chip is Fenestra royal blue (#0055A4)
+// the active chip is Fenestra royal blue (#006CE0)
 Item {
     id: puces
 
@@ -112,7 +112,7 @@ Item {
                 delegate: Rectangle {
                     id: puce
                     readonly property bool active: modelData.cle === puces.actif
-                    readonly property color accent: "#0055A4"   // 2.1: Fenestra royal blue, same everywhere in the theme
+                    readonly property color accent: "#006CE0"   // 2.1: Fenestra royal blue, same everywhere in the theme
                     width: libelle.implicitWidth + Kirigami.Units.gridUnit * 2   // 1.2: Menu 11 capsule size
                     height: Kirigami.Units.gridUnit * 1.8
                     radius: height / 2

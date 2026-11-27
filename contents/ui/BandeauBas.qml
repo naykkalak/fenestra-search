@@ -28,7 +28,7 @@ Rectangle {
     property real margeDroite: 0
     property real margeBas: 0
 
-    height: Kirigami.Units.gridUnit * 3 + 2   // Fenestra 1.1: same height as the Start menu footer
+    height: Kirigami.Units.gridUnit * 3 - 4   // same height as the Menu 11 footer (which is 10 px lower since its 2.1)
     color: "transparent"   // Fenestra: theme background, like the Menu 11 footer
 
     PlasmaExtras.PlasmoidHeading {   // 2.1: same footer strip as Menu 11 (rounded bottom corners)
@@ -59,6 +59,7 @@ Rectangle {
         anchors.right: boutonPlus.left
         anchors.rightMargin: Kirigami.Units.gridUnit
         anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: bandeau.margeBas / 2 + 1   // centred in the visible strip (its background extends below by the frame margin)
         height: Math.ceil(mesure.height) + 20   // 2.0: like the Menu 11 search area (font + 2 x 10 px)
         radius: height / 2
         color: Kirigami.Theme.backgroundColor   // 2.0: same background as the Menu 11 search
@@ -132,6 +133,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: Kirigami.Units.gridUnit
         anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: bandeau.margeBas / 2 + 1   // centred in the visible strip (its background extends below by the frame margin)
         width: textePlus.implicitWidth + 18
         height: 26
         Rectangle {

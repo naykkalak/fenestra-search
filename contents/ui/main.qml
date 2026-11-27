@@ -8,9 +8,19 @@ import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasma5support as Plasma5Support
 
 PlasmoidItem {
     id: root
+
+    // 2.1.1: updates through Discover (run once at start)
+    Plasma5Support.DataSource {
+        id: inscription
+        engine: "executable"
+        readonly property string commande: "python3 -I '" + String(Qt.resolvedUrl("../code/store_registry.py")).replace("file://", "") + "' add"
+        onNewData: (source, donnees) => disconnectSource(source)
+        Component.onCompleted: connectSource(commande)
+    }
 
     // typed text (entered in the window, displayed in the capsule)
     property string texteRecherche: ""

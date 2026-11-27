@@ -172,7 +172,7 @@ PlasmaComponents.ScrollView {
                     width: 3
                     height: titre.implicitHeight * 0.85
                     radius: 2
-                    color: "#0055A4"   // 2.1: royal blue, whatever the accent color
+                    color: "#006CE0"   // 2.1: royal blue, whatever the accent color
                     opacity: 1
                 }
                 Text {
@@ -280,7 +280,6 @@ PlasmaComponents.ScrollView {
                 anchors.bottomMargin: 4
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                onEntered: liste.courant = index      // the mouse takes the selection
                 onClicked: liste.lancer(modelData)
             }
         }
